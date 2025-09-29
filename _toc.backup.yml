@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Modulus of families of maximal increasing subsequences
+- caption: References
+  chapters:
+  - file: References
