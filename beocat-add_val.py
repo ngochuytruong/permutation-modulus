@@ -6,6 +6,7 @@ import random
 import multiprocess as mp
 import warnings
 import os
+import sys
 
 
 def generate_N(s):
@@ -78,15 +79,26 @@ def basic_matrix(pi, p):
 
 
 def compute_modulus(n):
-    mods = []
-    for _ in range(5):
-        mods.append(basic_matrix(random.sample(range(1, n + 1), n), 2))
-    return sum(mods) / len(mods)
+    mod = 0
+    mod_ext = 0
+    sum = 0
+    for _ in range(5000):
+        pi = random.sample(range(1, n + 1), n)
+        mod = basic_matrix(pi, 1)
+        new_val = random.randint(1, n+1)
+        for a in len(pi):
+            if pi[a] >= new_val:
+                pi[a] = 1 + pi[a]
+        pi.append(new_val)
+        mod_ext = basic_matrix(pi, 1)
+        if mod_ext > mod:
+            sum = sum + 1
+    return sum / 5000
 
 
 if __name__ == "__main__":
     start = 1
-    stop = 2
+    stop = 80
 
     warnings.filterwarnings('ignore', category=FutureWarning)
     with mp.Pool(processes=64) as pool:

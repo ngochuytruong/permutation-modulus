@@ -6,6 +6,7 @@ import random
 import multiprocess as mp
 import warnings
 import os
+import sys
 
 
 def generate_N(s):
@@ -78,10 +79,12 @@ def basic_matrix(pi, p):
 
 
 def compute_modulus(n):
-    mods = []
-    for _ in range(5):
-        mods.append(basic_matrix(random.sample(range(1, n + 1), n), 2))
-    return sum(mods) / len(mods)
+    high = 0
+    for _ in range(5000):
+        val = basic_matrix(random.sample(range(1, n + 1), n), 1)
+        if val > high:
+            high = val
+    return high
 
 
 if __name__ == "__main__":
