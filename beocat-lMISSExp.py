@@ -59,6 +59,7 @@ def basic_matrix(pi, p):
     mod = 0
     tol = 1e-5
     N = None
+    longest_miss = 0
     while True:
         vals = usage @ rho           # shape (m,)
 
@@ -66,9 +67,11 @@ def basic_matrix(pi, p):
         idx_min = np.argmin(vals)
         min_value = vals[idx_min]
         row_min = usage[idx_min]
+        if len(row_min) > longest_miss:
+            longest_miss = len(row_min)
 
         if min_value > 1 - tol:
-            return mod
+            return mod, longest_miss
             # return mod, rho
 
         N = add_constraint(N, row_min)
@@ -79,17 +82,16 @@ def basic_matrix(pi, p):
 
 
 def compute_modulus(n):
-    high = 0
+    long_miss = []
     for _ in range(5000):
-        val = basic_matrix(random.sample(range(1, n + 1), n), 1)
-        if val > high:
-            high = val
-    return high
+        val,longest_miss = basic_matrix(random.sample(range(1, n + 1), n), 1)
+        long_miss.append(longest_miss)
+    return sum(long_miss) / len(long_miss)
 
 
 if __name__ == "__main__":
     start = 1
-    stop = 2
+    stop = 40
 
     warnings.filterwarnings('ignore', category=FutureWarning)
     with mp.Pool(processes=64) as pool:

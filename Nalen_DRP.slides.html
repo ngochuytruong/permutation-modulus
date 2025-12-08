@@ -7441,7 +7441,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Modulus-of-families-of-maximal-increasing-subsequences">Modulus of families of maximal increasing subsequences<a class="anchor-link" href="#Modulus-of-families-of-maximal-increasing-subsequences">¶</a></h1>
+<h1 id="Expectations-of-modulus-of-families-of-maximal-increasing-subsequences">Expectations of modulus of families of maximal increasing subsequences<a class="anchor-link" href="#Expectations-of-modulus-of-families-of-maximal-increasing-subsequences">¶</a></h1>
 </div>
 </div>
 </div>
@@ -7469,7 +7469,7 @@ Faculty Mentor: Pietro Poggi-Corradini</p>
 <h3 id="Items-Read">Items Read<a class="anchor-link" href="#Items-Read">¶</a></h3><p>Mathematics of Networks: Modulus Theory and Convex Optimization, Nathan Albin and Pietro Poggi-Corradini</p>
 <p>Finding a Minimum Independent Dominating Set in a Permutation Graph, Mikhail J. Atallah et al.</p>
 <p>Maintenance of Configurations in the plane, Mark H. Overmars and Jan van Leeuwen</p>
-<p>Combinatorics and Random Matrix Theory, Jinho Baik</p>
+<p>Combinatorics and Random Matrix Theory, Jinho Baik, Percy Deift, and Toufic Suidan</p>
 </div>
 </div>
 </div>
@@ -7547,16 +7547,29 @@ $$</p>
 </div>
 </div>
 </div></div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c57a8f76">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Maximal-Increasing-Subsequences-(MISS)">Maximal Increasing Subsequences (MISS)<a class="anchor-link" href="#Maximal-Increasing-Subsequences-(MISS)">¶</a></h3><p>$\pi = 2\ 1\ 4\ 5\ 3\ $</p>
+<td>
+<img alt="No description has been provided for this image" src="images/validconnections1_5.png" width="400"/>
+</td>
+<p>There are 4 MISS here</p>
+<p>The list of MISS is the list of paths connecting <em>sources</em> and <em>sinks</em> in the permutation graph</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b61d62ba">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Families">Families<a class="anchor-link" href="#Families">¶</a></h3><p>$\Gamma$ represents a family of objects $\gamma$</p>
-<p>We then define $\mathcal{N}$ to be the usage matrix of objects in $\Gamma$</p>
-<p>With the previous MISS the row entry in $\mathcal{N}$ would</p>
-<p>be $\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 \end{bmatrix}$</p>
+<h3 id="Maximal-Increasing-Subsequences-(MISS)-($%5CGamma$)">Maximal Increasing Subsequences (MISS) ($\Gamma$)<a class="anchor-link" href="#Maximal-Increasing-Subsequences-(MISS)-($%5CGamma$)">¶</a></h3><p>We denote $\mathcal{N}$ to be the usage matrix whose rows are indicator vectors of all MISS</p>
 </div>
 </div>
 </div>
@@ -7567,84 +7580,15 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Weightings">Weightings<a class="anchor-link" href="#Weightings">¶</a></h3><p>We define our node density $\rho \in \mathbb{R}_{+}^{N}$ and the $\rho$-length as $\ell_\rho(\gamma) := \sum_{v = 1}^{N} \mathcal{N}(\gamma, v)\rho(v)$ (the "cost" of a MISS)</p>
+<h3 id="Modulus-of-$%5CGamma$">Modulus of $\Gamma$<a class="anchor-link" href="#Modulus-of-$%5CGamma$">¶</a></h3><p>We define our node density $\rho \in \mathbb{R}_{+}^{N}$ and the $\rho$-length as $\ell_\rho(\gamma) := \sum_{v = 1}^{N} \mathcal{N}(\gamma, v)\rho(v)$ (the "cost" of a MISS)</p>
 <p>And admissibility as $\rho$ is admissible for $\Gamma$ if $\ell_{\rho}(\gamma) \geq 1 \: \: \:\forall \gamma \in \Gamma$</p>
-<p>We then define the p-Modulus as $\text{Mod}_p(\Gamma) := \inf\limits_{\rho \in \text{Adm}(\Gamma)}\sum_{v=1}^{\text{N}}\rho(v)^p$</p>
+<p>(Everyone pays a dollar)</p>
+<p>We then define the p-Modulus as</p>
+<p>$$\text{Mod}_p(\Gamma) := \inf\limits_{\rho \in \text{Adm}(\Gamma)}\sum_{v=1}^{\text{N}}\rho(v)^p$$</p>
 </div>
 </div>
 </div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e0cfedb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For example:</p>
-<p>We see that the 1-Modulus is defined as $\text{Mod}_1(\Gamma) := \inf\limits_{\rho \in \text{Adm}(\Gamma)}\sum_{v=1}^{\text{N}}\rho(v)$</p>
-<p>And the 2-Modulus is defined as $\text{Mod}_2(\Gamma) := \inf\limits_{\rho \in \text{Adm}(\Gamma)}\sum_{v=1}^{\text{N}}\rho(v)^2$</p>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a3a9fcf">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Two-algorithms-for-computing-Modulus:">Two algorithms for computing Modulus:<a class="anchor-link" href="#Two-algorithms-for-computing-Modulus:">¶</a></h3><ul>
-<li>Basic Algorithm</li>
-<li>Plus-1 Algorithm</li>
-</ul>
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=04b3210e">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<table>
-<tr>
-<td>
-<img alt="No description has been provided for this image" src="images/NalenDRPImages/basic.png" width="400"/>
-</td>
-<td>
-<img alt="No description has been provided for this image" src="images/NalenDRPImages/new_plusone.png" width="400"/>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6782e4f9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The Basic Algorithm results in a convex optimization problem</p>
-<p>While the Plus-1 Algorithm results in a probabilistic approach</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=15494ec4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="A-new-Algorithm">A new Algorithm<a class="anchor-link" href="#A-new-Algorithm">¶</a></h3><p>Wanting a faster algorithm we developed Basic Matrix</p>
-<p>It combined the Basic algorithm and a usage matrix</p>
-</div>
-</div>
-</div>
-</div></section><section>
+</div><aside class="notes">
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79f7eff6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7661,234 +7605,175 @@ $$</p>
 </div>
 </div>
 </div>
+</div>
+</aside></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ae65f776">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Two-Oracles-to-Compute-Modulus">Two Oracles to Compute Modulus<a class="anchor-link" href="#Two-Oracles-to-Compute-Modulus">¶</a></h3><ol>
+<li>Compute usage matrix $\mathcal{N}$</li>
+<li>Find shortest MISS with weight $\rho$</li>
+</ol>
+</div>
+</div>
+</div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8e0adbf9">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1723a398">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Further-Tests">Further Tests<a class="anchor-link" href="#Further-Tests">¶</a></h3><p>Using this more powerful algorithm, we wanted to run tests to see how modulus values changed as our permutation grew</p>
+<h3 id="Expected-value-of-Modulus-of-MISS">Expected value of Modulus of MISS<a class="anchor-link" href="#Expected-value-of-Modulus-of-MISS">¶</a></h3><p>Let $\pi$ be a uniformly random permutation of size N</p>
+<p>We want to find $\mathbb{E}(\text{Mod}_{1}(\Gamma(\pi_{\text{N}})))$ and $\mathbb{E}(\text{Mod}_{2}(\Gamma(\pi_{\text{N}})))$</p>
 </div>
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5aa755d5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6c1d2d0b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Modulus">Modulus<a class="anchor-link" href="#Modulus">¶</a></h3><table>
+<h3 id="Numerical-Result-for-$%5Ctext%7BMod%7D_1$">Numerical Result for $\text{Mod}_1$<a class="anchor-link" href="#Numerical-Result-for-$%5Ctext%7BMod%7D_1$">¶</a></h3><table>
 <tr>
 <td>
-<img alt="No description has been provided for this image" src="images/MOD1.png" width="400"/>
-</td>
-<td>
-<img alt="No description has been provided for this image" src="images/MOD2.png" width="400"/>
+<img alt="No description has been provided for this image" src="images/MOD1_standard.png" width="700"/>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=443a1db4">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d9c7c06">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In MOD 1 we see that the expectation grows to &gt; 4</p>
-<p>In Mod 2 we see that the expectation approaches 2</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=75c4e1f8">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Modulus-/-n">Modulus / n<a class="anchor-link" href="#Modulus-/-n">¶</a></h3><table>
+<h3 id="$%5Ctext%7BMod%7D_1$-=-Min-Cut-of-the-Permutation-Graph">$\text{Mod}_1$ = Min Cut of the Permutation Graph<a class="anchor-link" href="#$%5Ctext%7BMod%7D_1$-=-Min-Cut-of-the-Permutation-Graph">¶</a></h3><p>What is a cut? A cut is a set of vertices in the permutation graph that would disconnect the <em>sources</em> and <em>sinks</em></p>
+<table>
 <tr>
 <td>
-<img alt="No description has been provided for this image" src="images/MOD1_over_n.png" width="400"/>
+<img alt="No description has been provided for this image" src="images/validconnections1_5.png" width="300"/>
 </td>
+</tr>
+</table>
+<p>Ex: Min Cut = 2 and note that Min Cut $\leq$ |Sources| and Min Cut $\leq$ |Sinks|</p>
+<p>$\mathbb{E}(\text{Mod}_{1}(\Gamma(\pi_{\text{N}}))) = \mathbb{E}(\text{MinCut}_N)$</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a3b0f1ef">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Expected-Value-of-%7C-Sources-%7C-for-a-Random-Permutation-of-Size-N-($S_%7BN%7D$)">Expected Value of | Sources | for a Random Permutation of Size N ($S_{N}$)<a class="anchor-link" href="#Expected-Value-of-%7C-Sources-%7C-for-a-Random-Permutation-of-Size-N-($S_%7BN%7D$)">¶</a></h3><p>Answer:
+$S_{N} = 1 + \frac{1}{2} + ... + \frac{1}{N} \approx \ln n$</p>
+<p>We can also prove this using the induction formula: $S_{N+1} = S_{N} + \frac{1}{N+1}$</p>
+</div>
+</div>
+</div>
+</div><div class="fragment">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=68f74c2e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<tr>
 <td>
-<img alt="No description has been provided for this image" src="images/MOD2_over_n.png" width="400"/>
+<img alt="No description has been provided for this image" src="images/MOD1.png" width="600"/>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c07575fb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In both graphs the expectation approaches 0, with MOD 2 seeming to approach faster</p>
-</div>
-</div>
-</div>
 </div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2e9bd908">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44d4f183">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Modulus-/-$%5Csqrt-n$">Modulus / $\sqrt n$<a class="anchor-link" href="#Modulus-/-$%5Csqrt-n$">¶</a></h3><table>
+<h3 id="Conjecture">Conjecture<a class="anchor-link" href="#Conjecture">¶</a></h3><p>$\mathbb{E}(\text{MinCut}_N) \leq \mathbb{E}(\text{MinCut}_{N+1})$</p>
+<p>$\mathbb{E}(\text{MinCut}_N)$ = O(log N)</p>
+<table>
 <tr>
 <td>
-<img alt="No description has been provided for this image" src="images/MOD1_over_sqrtn.png" width="400"/>
-</td>
-<td>
-<img alt="No description has been provided for this image" src="images/MOD2_over_sqrtn.png" width="400"/>
+<img alt="No description has been provided for this image" src="images/MOD1.png" width="600"/>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f12bb9a8">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1e0cff81">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Similar to the graphs for MOD / n, the expectation approaches 0</p>
-<p>This time with MOD 2 approaching 0 at a much faster rate than MOD 1</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=af12fca9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="ln(MOD)">ln(MOD)<a class="anchor-link" href="#ln(MOD)">¶</a></h3><table>
+<h3 id="Adding-1-more-number">Adding 1 more number<a class="anchor-link" href="#Adding-1-more-number">¶</a></h3><p>$\mathbb{P}(\text{MinCut}(\pi + j) &gt; \text{MinCut}(\pi))$ where $\pi$ and $j$ are uniformly randomized</p>
+<table>
 <tr>
 <td>
-<img alt="No description has been provided for this image" src="images/ln(MOD1).png" width="400"/>
-</td>
-<td>
-<img alt="No description has been provided for this image" src="images/ln(MOD2).png" width="400"/>
+<img alt="No description has been provided for this image" src="images/P(MC(pi+j) greater MC(pi)).png" width="600"/>
 </td>
 </tr>
 </table>
 </div>
 </div>
 </div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd632c1f">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67c5f4b3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>With ln(MOD 1) the expectation follows closely to that of $\frac{1}{3}$ * ln(n)</p>
-<p>Similarly with ln(MOD 2), the expectation follows closely to that of $\frac{1}{7}$ * ln(n)</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08981588">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="$%5Ctext%7BMOD%7D%5E%7B-1%7D$">$\text{MOD}^{-1}$<a class="anchor-link" href="#$%5Ctext%7BMOD%7D%5E%7B-1%7D$">¶</a></h3><table>
+<h3 id="Numerical-Result-for-$%5Ctext%7BMod%7D_2$">Numerical Result for $\text{Mod}_2$<a class="anchor-link" href="#Numerical-Result-for-$%5Ctext%7BMod%7D_2$">¶</a></h3><table>
 <tr>
 <td>
-<img alt="No description has been provided for this image" src="images/inverse_MOD1.png" width="400"/>
-</td>
-<td>
-<img alt="No description has been provided for this image" src="images/inverse_MOD2.png" width="400"/>
+<img alt="No description has been provided for this image" src="images/MOD2.png" width="600"/>
 </td>
 </tr>
 </table>
+<p>Questions:</p>
+<ul>
+<li>Is it increasing for a large N?</li>
+<li>What occurs asymptotically?</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=528edffe">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=583356fb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>With $\text{MOD}^{-1}$ both graphs show that the expectation approaches 0 with $\text{MOD 1}^{-1}$ approaching much faster</p>
+<h3 id="Future-Work">Future Work<a class="anchor-link" href="#Future-Work">¶</a></h3><ul>
+<li>Expected value for the shortest MISS, know that expected value for longest MISS was studied in the literature</li>
+<li>Collect data on larger permutations</li>
+<li>Further improve our estimates</li>
+</ul>
 </div>
 </div>
 </div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70bd37a5">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Longest-MISS">Longest MISS<a class="anchor-link" href="#Longest-MISS">¶</a></h3><table>
-<tr>
-<td>
-<img alt="No description has been provided for this image" src="images/longest_MISS.png" width="400"/>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=00b66845">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We also wanted to graph how the length of the longest observed MISS changes as the size of our permutation increases</p>
-<p>In general, we noticed that this value seemed to follow 2 * ln(n)</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d444f7ab">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="P(MC($%5Cpi$-+-j)-%3E-MC($%5Cpi$))">P(MC($\pi$ + j) &gt; MC($\pi$))<a class="anchor-link" href="#P(MC($%5Cpi$-+-j)-%3E-MC($%5Cpi$))">¶</a></h3><table>
-<tr>
-<td>
-<img alt="No description has been provided for this image" src="images/P(MC(pi+j) greater MC(pi)).png" width="400"/>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div><div class="fragment">
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a988bfea">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Lastly we wanted to estimate the probability that adding a node at the end of the permutation graph would increase the value of the Min Cut (MOD 1)</p>
-<p>We saw that once our $\pi$ was large enough such that there was large N! number of permutations the probability that Min Cut would increase was ~0.6</p>
-</div>
-</div>
-</div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b4cd11f8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">

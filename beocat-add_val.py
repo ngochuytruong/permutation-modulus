@@ -82,29 +82,41 @@ def compute_modulus(n):
     mod = 0
     mod_ext = 0
     sum = 0
-    for _ in range(5000):
+    probs = []
+    for i in range(n+1):
         pi = random.sample(range(1, n + 1), n)
         mod = basic_matrix(pi, 1)
-        new_val = random.randint(1, n+1)
+        new_val = i
         for a in len(pi):
             if pi[a] >= new_val:
                 pi[a] = 1 + pi[a]
         pi.append(new_val)
         mod_ext = basic_matrix(pi, 1)
         if mod_ext > mod:
-            sum = sum + 1
-    return sum / 5000
+            probs.append(1)
+        else:
+            probs.append(0)
+    return probs
 
 
 if __name__ == "__main__":
-    start = 1
-    stop = 80
+    start = 70
+    stop = 71
 
-    warnings.filterwarnings('ignore', category=FutureWarning)
-    with mp.Pool(processes=64) as pool:
-        results = pool.map(compute_modulus, range(start, stop))
+    full_probs = []
+    for i in range(71):
+        full_probs.append(0)
 
-    for n, result in zip(range(start, stop), results):
+    for _ in range(5000):
+        prob = compute_modulus(start)
+        for i in prob:
+            if prob[i] == 1:
+                full_probs[i] = full_probs[i] + 1
+
+    for i in range(71):
+        full_probs[i] = full_probs[i] / 5000
+
+    for n, result in zip(range(1,71), full_probs):
         print(f'{n}: {result}')
 
     #plt.title(f"Modulus Values of Permutations of Size {1} to {stop}")
