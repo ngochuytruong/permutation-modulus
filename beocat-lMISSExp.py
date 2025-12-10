@@ -67,8 +67,12 @@ def basic_matrix(pi, p):
         idx_min = np.argmin(vals)
         min_value = vals[idx_min]
         row_min = usage[idx_min]
-        if len(row_min) > longest_miss:
-            longest_miss = len(row_min)
+        size = 0
+        for i in range(len(row_min)):
+            if row_min[i] == 1:
+                size = size + 1
+        if size > longest_miss:
+            longest_miss = size
 
         if min_value > 1 - tol:
             return mod, longest_miss
@@ -91,7 +95,7 @@ def compute_modulus(n):
 
 if __name__ == "__main__":
     start = 1
-    stop = 40
+    stop = 50
 
     warnings.filterwarnings('ignore', category=FutureWarning)
     with mp.Pool(processes=64) as pool:
