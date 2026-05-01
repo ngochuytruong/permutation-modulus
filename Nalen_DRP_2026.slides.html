@@ -7479,7 +7479,7 @@ Faculty Mentor: Pietro Poggi-Corradini</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>Given this we aim to solve the strictly convex quadratic program</p>
+<h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>We aim to solve the strictly convex quadratic program (primal)</p>
 <p>$$ \min_{x\in \mathbb{R}^n}\;\frac{1}{2}\|x\|^2
   \qquad\text{subject to}\qquad
   Ax \ge \mathbb{1}, $$
@@ -7488,14 +7488,37 @@ The $i$-th constraint reads $a_i^{\top}x\ge 1$.</p>
 </div>
 </div>
 </div>
-</div>
+</div><div class="fragment">
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c389525c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="How-To-Solve">How To Solve<a class="anchor-link" href="#How-To-Solve">¶</a></h2><p>The Langrangian is $\mathcal{L}(x,\lambda) = \frac{1}{2}\|x\|^2 - \lambda^{\top}(Ax - \mathbb{1})$</p>
+<h2 id="How-To-Solve">How To Solve<a class="anchor-link" href="#How-To-Solve">¶</a></h2><p>The Lagrangian is $\mathcal{L}(x,\lambda) = \frac{1}{2}\|x\|^2 - \lambda^{\top}(Ax - \mathbb{1})$</p>
+<p>With $\lambda \geq 0$</p>
+<p>$\inf\limits_{x \in \mathbb{R}^n}(\sup\limits_{\lambda \in \mathbb{R}^m_{\geq 0}}(\mathcal{L}(x,\lambda))) = \sup\limits_{\lambda \in \mathbb{R}^m_{\geq 0}}(\inf\limits_{x \in \mathbb{R}^n}(\mathcal{L}(x,\lambda)))$ by Slater's condition</p>
+<p>The left problem is the primal problem and the right problem is the dual problem</p>
+</div>
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cb174a70">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Dual-Problem">Dual Problem<a class="anchor-link" href="#Dual-Problem">¶</a></h2><p>Now we look at the dual problem, lets find critical points with respect to $x$ in $$\mathcal{L}(x,\lambda) = \frac{1}{2}\|x\|^2 - \lambda^{\top}(Ax - \mathbb{1})$$</p>
+<p>$\implies x = A^{\top}\lambda$, Plug in the critical point. Then we maximize over $\lambda$
+$$ \max_{\lambda\ge 0}\; \phi(\lambda) := \mathbb{1}^{\top}\lambda - \frac{1}{2}\|{A^{\top}\lambda}\|^2.$$</p>
+<p>$$\nabla\phi(\lambda) = \mathbb{1} - Ax.$$</p>
+<p>KKT Conditions:
+$$x = A^{\top}\lambda, \\
+  Ax \ge \mathbb{1}, \\
+  \lambda \ge 0, \\
+  \lambda_i\bigl(a_i^{\top}x - 1\bigr) = 0,\quad i=1,\ldots,m.$$</p>
+<p>If $x \text{ and } \lambda$ satisfy KKT conditions then they are optimal</p>
 </div>
 </div>
 </div>
@@ -7506,24 +7529,13 @@ The $i$-th constraint reads $a_i^{\top}x\ge 1$.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Active-Set">Active Set<a class="anchor-link" href="#Active-Set">¶</a></h2><p>Let W be the current active set. At all times we maintain that:</p>
+<h2 id="Goldfarb-Idnani-Algorithm">Goldfarb-Idnani Algorithm<a class="anchor-link" href="#Goldfarb-Idnani-Algorithm">¶</a></h2><p>The algorithm will build a set of constraints by adding one at a time with the corresponding values of the Lagrangian dual variable $\lambda$.</p>
+<p>We want these constraints to always be active. At times we will remove constraints that become inactive.</p>
+<p>In particular, let W be the current active set. At all times we maintain that:</p>
 <p>(i) $x = A_W^{\top}\lambda_W$</p>
 <p>(ii) $A_Wx = \mathbb{1}$</p>
 <p>(iii) $\lambda_W &gt; 0$</p>
-<p>When constraints become inactive they have a $\lambda_W\leq0$. On each update we then remove all inactive constraints.</p>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cb174a70">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Dual-Problem">Dual Problem<a class="anchor-link" href="#Dual-Problem">¶</a></h2><p>Since $x = A^{\top}\lambda$, the dual problem is
-$$ \max_{\lambda\ge 0}\; \phi(\lambda) := \mathbb{1}^{\top}\lambda - \frac{1}{2}\|{A^{\top}\lambda}\|^2.$$</p>
-<p>The primal variable is recovered by $x = A^{\top}\lambda $, and $$\nabla\phi(\lambda) = \mathbb{1} - Ax.$$</p>
+<p>A constraint $p$ is active if $a_p^{\top}x = 1$</p>
 </div>
 </div>
 </div>
@@ -7534,20 +7546,13 @@ $$ \max_{\lambda\ge 0}\; \phi(\lambda) := \mathbb{1}^{\top}\lambda - \frac{1}{2}
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Initialization">Initialization<a class="anchor-link" href="#Initialization">¶</a></h2><p>When starting the algorithm
+<h2 id="Searching">Searching<a class="anchor-link" href="#Searching">¶</a></h2><p>When starting the algorithm
 $W = \emptyset, \lambda = \emptyset, x = \emptyset$</p>
-<p>And so the invariant conditions are fulfilled vacuously</p>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=80ee8d44">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Searching">Searching<a class="anchor-link" href="#Searching">¶</a></h2><p>If at any point a constriant $p$ is violated such that: $a_p^{\top} &lt; 1.$ We update such that $\lambda_W(t) = \lambda_W + t\,\Delta\lambda_W$</p>
+<p>If the current choice of $\lambda$ is not optimal there must exist a constraint $p$ so that $a_p^{\top}x &lt; 1.$ We add $p$ to $W$ and update $\lambda$ so that the 3 conditions for $W$ are fulfilled.</p>
+<p>(i) $x = A_W^{\top}\lambda_W$</p>
+<p>(ii) $A_Wx = \mathbb{1}$</p>
+<p>(iii) $\lambda_W &gt; 0$</p>
+<p>We move $\lambda_W$ in the direction $\Delta\lambda_W$ with the amount $t$ $$\lambda_W(t) = \lambda_W + t\,\Delta\lambda_W$$</p>
 </div>
 </div>
 </div>
@@ -7558,20 +7563,18 @@ $W = \emptyset, \lambda = \emptyset, x = \emptyset$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="How-Do-we-get-$%5CDelta%5Clambda_W?$">How Do we get $\Delta\lambda_W?$<a class="anchor-link" href="#How-Do-we-get-$%5CDelta%5Clambda_W?$">¶</a></h2><p>$\Delta\lambda_W$ is evaluated by solving the equation $A_W A_W^{\top}\,\Delta\lambda_W = -A_W a_p$</p>
+<h2 id="We-Choose-A-Direction-$%5CDelta%5Clambda_W$-So-That-All-Previous-Constraints-Remain-Active">We Choose A Direction $\Delta\lambda_W$ So That All Previous Constraints Remain Active<a class="anchor-link" href="#We-Choose-A-Direction-$%5CDelta%5Clambda_W$-So-That-All-Previous-Constraints-Remain-Active">¶</a></h2><p>We parameterize the update as
+$$
+  \lambda_W(t) = \lambda_W + t\,\Delta\lambda_W,
+  \qquad
+  \lambda_p(t) = t,
+  \qquad
+  x(t) = x + t\,\Delta x,
+$$</p>
+<p>with $\Delta x = A_W^{\top}\Delta\lambda_W + a_p$.</p>
+<p>Requiring $A_W\Delta x = 0$ to keep active constraints tight gives:</p>
+<p>$$A_W A_W^{\top}\,\Delta\lambda_W = -A_W a_p$$</p>
 <p>But solving this equation is an expensive step in our algorithm</p>
-</div>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92ff14cd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Efficiency-Step">Efficiency Step<a class="anchor-link" href="#Efficiency-Step">¶</a></h2><p>To solve $A_W A_W^{\top}\,\Delta\lambda_W = -A_W a_p$ more efficiently we maintain a Cholesky Decomposition such that $A_W A_W^{\top} = LL^{\top}$</p>
-<p>This allows us to solve for $\Delta\lambda_W$ much more efficiently</p>
 </div>
 </div>
 </div>
@@ -7582,23 +7585,10 @@ $W = \emptyset, \lambda = \emptyset, x = \emptyset$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Updating">Updating<a class="anchor-link" href="#Updating">¶</a></h2><p>When updating our active set we have two cases:</p>
-<p>Case 1: Adding a constraint</p>
-<p>This happens when all constraints are active and we have not terminated</p>
-<p>Then a new constraint $p$ becomes active and $W \leftarrow W \cup {p}$</p>
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=45554c79">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Case 2: Removal of all inactive constraints</p>
-<p>This occurs if at least one $\lambda_j \leq 0$ We then remove all inactive constraints from $W$ so that $\lambda_W &gt; 0$</p>
-<p>In either case we continue to loop after the case is completed until the algorithm terminates</p>
+<h2 id="Choose-$t$-So-That-The-New-Constraint-Is-Active">Choose $t$ So That The New Constraint Is Active<a class="anchor-link" href="#Choose-$t$-So-That-The-New-Constraint-Is-Active">¶</a></h2><p>$$t_{\mathrm{full}}a_p^{\top}\Delta x + a_p^{\top}x = 1$$</p>
+<p>When we are moving $\lambda$ we can make a previous $\lambda_j$ hit $0$</p>
+<p>If that happens we would remove the constraint $j$ and recalculate the direction</p>
+<p>If not we successfully add the constraint $p$</p>
 </div>
 </div>
 </div>
@@ -7609,7 +7599,7 @@ $W = \emptyset, \lambda = \emptyset, x = \emptyset$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Dual-Objective-Is-Strictly-Increasing">Dual Objective Is Strictly Increasing<a class="anchor-link" href="#Dual-Objective-Is-Strictly-Increasing">¶</a></h2><p><strong>Lemma:</strong> <em>Every step strictly increases $\phi$.</em></p>
+<h2 id="Why-Does-It-Work?---Dual-Objective-Does-Not-Decrease">Why Does It Work? - Dual Objective Does Not Decrease<a class="anchor-link" href="#Why-Does-It-Work?---Dual-Objective-Does-Not-Decrease">¶</a></h2><p><strong>Lemma:</strong> <em>No step decreases $\phi$.</em></p>
 <p><strong>Proof:</strong>
 $$
 
@@ -7634,12 +7624,7 @@ so it does not change $\phi$. $\square$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Termination">Termination<a class="anchor-link" href="#Termination">¶</a></h2><p><strong>Inner loop.</strong></p>
-<p>Each blocking step has $t &gt; 0$ (since $\lambda_W &gt; 0$ by invariant (iii))
-and drops at least one index from $W$.
-Since $\lvert W\rvert$ is finite, the inner loop terminates.
-Once $W = \emptyset$, $\Delta x = a_p$ and
-$a_p^{\top}\Delta x = \|{a_p}\|^2 &gt; 0$,
-so $p$ is added.</p>
+<p>Since $\lvert W\rvert$ is finite, the inner loop terminates.</p>
 </div>
 </div>
 </div>
@@ -7653,9 +7638,10 @@ so $p$ is added.</p>
 <p><strong>Outer loop.</strong></p>
 <p><strong>Lemma</strong> <em>No active set is ever revisited.</em></p>
 <p>Proof:</p>
-<p>Linear independence of $A_W$ is maintained throughout: a constraint $p$ is
-added only when $a_p^{\top}\Delta x &gt; 0$, which implies
-$a_p \notin \operatorname{row}(A_W)$; dropping steps only remove rows.
+<p>Linear independence of $A_W$ is maintained throughout: If a constraint $p$ is
+added, then $$a_p^{\top}\Delta x = a_p^{\top}x_{\text{new}} - a_p^{\top}x_{\text{old}} = 1 - a_p^{\top}x_{\text{old}} &gt; 0$$</p>
+<p>If $a_p$ is a linear combination of rows $\in W$ then $a_p^{\top}\Delta x$ must be $0$ since all rows $\in W$ remain active before and after. So there is a contradiction.</p>
+<p>So, $a_p \notin \operatorname{row}(A_W)$; dropping steps only remove rows.
 Hence $A_W A_W^{\top}$ is invertible and $W$ uniquely determines
 $$
   \lambda(W) = (A_W A_W^{\top})^{-1}\mathbb{1},
@@ -7667,6 +7653,19 @@ Since $\phi$ strictly increases at every outer iteration
 the same $W$---cannot recur. $\square$</p>
 <p>Since there are at most $2^m$ distinct active sets, the algorithm terminates
 in finitely many steps.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=92ff14cd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Efficiency-Step">Efficiency Step<a class="anchor-link" href="#Efficiency-Step">¶</a></h2><p>Solving this equation: $$A_W A_W^{\top}\,\Delta\lambda_W = -A_W a_p$$ is an expensive step in our algorithm</p>
+<p>If we know the Cholesky Decomposition of the square matrix $A_WA_W^{\top} = LL^{\top}$ where $L$ is a square lower triangular matrix then $\Delta\lambda_W$ can be found efficiently</p>
+<p>Hence we update $L$ in every step efficiently (After deleting a row or adding a row to $A_W$)</p>
 </div>
 </div>
 </div>
@@ -7696,9 +7695,13 @@ a_p^{\top} A_W &amp;
 a_p^{\top} a_p
 \end{bmatrix}
 $$
-To update our Cholesky matrix $L$ we compute our new row $$l = L^{-1}A_Wa_p \text{ and } t = \sqrt{a_p^{\top}a_p - l^{\top}l}$$</p>
-<p>Then
-$$
+To update our Cholesky matrix $L$ as follows $\overline{L} = \begin{bmatrix}
+L &amp; 0 \\
+l^{\top} &amp; t
+\end{bmatrix}$</p>
+<p>So that</p>
+<p>$$
+\overline{L}{\overline{L}}^{\top} = 
 \begin{bmatrix}
 L &amp; 0 \\
 l^{\top} &amp; t
@@ -7712,7 +7715,16 @@ L^{\top} &amp; l \\
 LL^{\top} &amp; Ll \\
 l^{\top}L^{\top} &amp; l^{\top}l + t^2
 \end{bmatrix}
+= 
+\begin{bmatrix}
+A_W A_W^{\top} &amp;
+A_W a_p \\
+a_p^{\top} A_W &amp; 
+a_p^{\top} a_p
+\end{bmatrix}
 $$</p>
+<p>Hence</p>
+<p>$$l = L^{-1}A_Wa_p \text{ and } t = \sqrt{a_p^{\top}a_p - l^{\top}l}$$</p>
 </div>
 </div>
 </div>
@@ -7746,7 +7758,21 @@ L_{11}^{\top} &amp; l_{21} &amp; L_{31}^{\top} \\
 0 &amp; 0 &amp; L_{33}^{\top}
 \end{bmatrix}
 $$</p>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dee206e7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Upon removing the offending constraint we have</p>
+<p>$\overline{L} = \begin{bmatrix}
+L_{11} &amp; 0 &amp; 0 \\
+L_{31} &amp; l_{32} &amp; L_{33}
+\end{bmatrix}$</p>
 <p>$$
 \begin{bmatrix}
 A_{W_1} \\
@@ -7766,19 +7792,9 @@ L_{11}^{\top} &amp; L_{31}^{\top} \\
 0  &amp; L_{33}^{\top}
 \end{bmatrix}
 $$</p>
-</div>
-</div>
-</div>
-</div></section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a6540abb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Givens-Rotations">Givens Rotations<a class="anchor-link" href="#Givens-Rotations">¶</a></h2><p>In the case where we remove a constraint our updated $L$ is no longer lower triangular</p>
-<p>To resolve this we perform a series of Givens rotations to restore $L$ to its lower triangular status</p>
-<p>Each Givens rotation only affects two columns of L each time allowing it to be done efficiently</p>
+<p>This $\overline{L}$ has the dimension $i\times(i+1)$</p>
+<p>And every nonzero entry above the new diagonal must be at the position $(j,j+1)$.</p>
+<p>To resolve this we perform a sequence of Givens rotations to update $\overline{L}$ to a square lower triangular form</p>
 </div>
 </div>
 </div>
